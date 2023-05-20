@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Masai Games</title>
+  </head>
+  <body>
+    <div id="min"></div>
+    <div id="max"></div>
+    <div id="score"> </div>
+    <div id="keypad">
+      <button class="number-btn">0</button>
+      <button class="number-btn">1</button>
+      <button class="number-btn">2</button>
+      <button class="number-btn">3</button>
+      <button class="number-btn">4</button>
+      <button class="number-btn">5</button>
+      <button class="number-btn">6</button>
+      <button class="number-btn">7</button>
+      <button class="number-btn">8</button>
+      <button class="number-btn">9</button>
+    </div>
+    <button id="enter">ENTER</button>
+  </body>
+  <script>
+    var scoreDiv =document.getElementById('score');
+    var keypadButtons = document.querySelectorAll('.number-btn');
+    var enterButton = document.getElementById('enter');
+    var maxDiv = document.getElementById('max');
+    var minDiv = document.getElementById('min');
+
+
+    var score =0;
+    var max =0;
+    var min=0;
+    var isFirstEnter=true;
+
+    keypadButtons.forEach((button)=>{
+    button.addEventListener('click',()=>{
+
+        var num = parseInt(button.textContent);
+        score = num;
+        scoreDiv.textContent = score;
+    });
+    });
+
+    enterButton.addEventListener('click',()=>{
+      if(isFirstEnter){
+        isFirstEnter =false;
+        max = score;
+        min = score;
+        maxDiv.textContent = max;
+        minDiv.textContent = min;
+      }else{
+        if(score<min){
+          min = score;
+          minDiv.textContent = min;
+        }else if(score>max)
+        {
+          max =score;
+          maxDiv.textContent = max;
+        }
+      }
+
+      score =0;
+      scoreDiv.textContent = score;
+    })
+  </script>
+</html>
